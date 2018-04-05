@@ -1,0 +1,67 @@
+$pyorea: 300px;
+
+ion-content{
+  @extend .tausta;
+  background-image: url('../assets/imgs/taustakuva.png');
+}
+.korttitausta{
+  @extend .tausta;
+  background: url('../assets/imgs/hipster.jpg');
+  width: 85vw;
+  height: 85vw;
+  position: relative;
+  margin: auto;
+}
+
+.lapinakyva{
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.vcenter {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vcenter25 {
+  position: relative;
+  top: 25%;
+  transform: translateY(-50%);
+}
+
+ion-navbar[hidebackbutton] button[menutoggle]{
+  display: block !important;
+}
+
+.pyorea{
+  @extend .lapinakyva;
+  border-radius: 50%;
+  width: $pyorea;
+  height: $pyorea;
+  margin:auto;
+}
+
+.smallcaps{
+  font-variant: small-caps;
+}
+
+.logo{
+  @extend .tausta;
+  border-radius: 50%;
+  width: 40vw;
+  height: 40vw;
+  margin: auto;
+  margin-top: 15%;
+  background-image: url('../assets/imgs/logo.png');
+  position: sticky;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.content-md {
+    background-color: transparent;
+}
+
+.tausta{
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -1,0 +1,32 @@
+$numeropohja: 100px;
+
+page-home {
+.numero{
+  display: inline-block;
+  text-align: center;
+  background-color: lightsalmon;
+  width: $numeropohja;
+  height: $numeropohja;
+}
+
+ion-card {
+    position: relative;
+    text-align: center;
+  }
+
+  .card-title {
+    font-size: 3.0rem;
+    font-weight: bold;
+    color: #fff;
+    padding: 10px;
+    text-shadow:5px 2px black;
+  }
+
+  .card-subtitle {
+    font-size: 1.8em;
+    width: 100%;
+    color: #fff;
+    padding: 10px;
+    text-shadow:5px 2px black;
+  }
+}

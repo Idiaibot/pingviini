@@ -1,0 +1,26 @@
+<ion-menu [content]="content" >
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="smallcaps">Valikko </ion-title>
+      <ion-buttons start>
+      <button menuClose ion-button icon-only (click)='asetukset()'>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="lapinakyva">
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)='menesivulle(p)'>
+        {{p.title}}
+        <ion-icon item-start name="{{p.icon}}"></ion-icon>
+      </button>
+
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

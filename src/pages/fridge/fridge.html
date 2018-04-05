@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+      <ion-title class="smallcaps">Jääkaappi</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+    Nykyinen tilanne
+</ion-item>
+  <ion-item>
+    <ion-icon name="thermometer" item-start></ion-icon>
+      Lämpötila
+    <ion-icon name="rose" item-end></ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="timer" item-start></ion-icon>
+      Aukioloaika
+    <ion-icon name="rose" item-end></ion-icon>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="leaf" item-start></ion-icon>
+      Kosteus
+    <ion-icon name="umpbrella" item-end></ion-icon>
+  </ion-item>
+</ion-list>
+  <div class="radarChart"></div>
+
+  <ion-card>
+    <ion-card-header>
+      Bar Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
