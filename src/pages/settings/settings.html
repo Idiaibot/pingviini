@@ -21,8 +21,12 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Yllätyspalkinto</ion-label>
-    <ion-toggle></ion-toggle>
+    <ion-label>Yölämpötila liikaa</ion-label>
+    <ion-toggle [(ngModel)]="dataProvider.hothot"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-label>Jääkaappiauki</ion-label>
+    <ion-toggle [(ngModel)]="dataProvider.jaakaapintila"></ion-toggle>
   </ion-item>
 
 </ion-list>

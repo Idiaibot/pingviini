@@ -9,33 +9,41 @@
 </ion-header>
 <ion-content padding>
   <ion-list>
-    <ion-item>
-    Nykyinen tilanne
-</ion-item>
   <ion-item>
     <ion-icon name="thermometer" item-start></ion-icon>
       Lämpötila
-    <ion-icon name="rose" item-end></ion-icon>
+    <span item-end>{{dataProvider.lampotila | number: '1.1-1'}}℃</span>
   </ion-item>
   <ion-item>
     <ion-icon name="timer" item-start></ion-icon>
       Aukioloaika
-    <ion-icon name="rose" item-end></ion-icon>
+    <span item-end>{{dataProvider.aukisekuntti |date: "mm:ss"}}</span>
   </ion-item>
   <ion-item>
-    <ion-icon name="leaf" item-start></ion-icon>
-      Kosteus
-    <ion-icon name="umpbrella" item-end></ion-icon>
+    <ion-icon name="md-cloudy-night" item-start></ion-icon>
+      Yölämpötila
+    <span item-end>{{dataProvider.hothothot}}℃</span>
   </ion-item>
 </ion-list>
-  <div class="radarChart"></div>
 
-  <ion-card>
-    <ion-card-header>
-      Bar Chart
-    </ion-card-header>
+
+
+  <ion-card style="width: 100%; margin: 0px;">
     <ion-card-content>
-      <canvas #barCanvas></canvas>
+
+      <ion-slides pager>
+        <ion-slide>
+        <div class="chart-container" >
+            <canvas #barCanvas></canvas>
+        </div>
+        </ion-slide>
+        <ion-slide>
+          <div class="chart-container" >
+              <canvas #tittelit></canvas>
+          </div>
+        </ion-slide>
+      </ion-slides>
+
     </ion-card-content>
   </ion-card>
 

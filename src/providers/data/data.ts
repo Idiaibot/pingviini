@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ToastController } from 'ionic-angular';
 
 /*
 Generated class for the DataProvider provider.
@@ -10,7 +11,22 @@ and Angular DI.
 export class DataProvider {
 
   public quotes:any
-  constructor() {
+  public jaakaapintila:boolean
+  public hothot:boolean
+  public aukisekuntti:number = new Date(2018, 1,1).valueOf() + 150000
+  public lampotila:number = 5
+  public hothothot:number = 4
+  public toastesilla = false
+  public chartviite: any
+  public viikkoarvot = [352, 259, 340, 812]
+  public linearvot = []
+
+  constructor( private toastCtrl: ToastController) {
+    let arvo = (this.aukisekuntti - new Date(2018, 1,1).valueOf())/1000;
+    this.viikkoarvot.push(arvo);
+    this.randomarvot();
+
+    this.jaakaappiaika();
     console.log('Hello DataProvider Provider');
     this.quotes = [
       {quote: 'I’m going to make him an offer he can’t refuse, about electricity', source: 'The Godfather'},
@@ -34,12 +50,140 @@ export class DataProvider {
       {quote: 'Frankly, my dear, I give a damn about recycling ', source: 'Gone With the Wind'}
     ]
   }
-palautarandom(taulu){
-  let pos = Math.floor(Math.random() *taulu.length)
-  var x =taulu[pos];
-  console.log(x);
-  return x;
+
+  palautarandom(taulu){
+    let pos = Math.floor(Math.random() *taulu.length)
+    var x =taulu[pos];
+    console.log(x);
+    return x;
+  }
+randomarvot(){
+  for(var i=0; i<4;i++){
+    this.linearvot[i] = Math.floor(Math.random() * (8 - 4 + 1)) + 4;
+  }
+
 }
 
+  jaakaappiaika=()=>{
+    setInterval(()=>{
+      this.yolampotila();
+      if(this.jaakaapintila){
+        this.aukisekuntti += 1000;
+        this.apina();
+        this.paivitaChart(this.chartviite);
+      }
+      else{
+        this.apina2();
+      }
+    },1000)
+  }
 
+  yolampotila=()=>{
+    if(this.hothot){
+      this.hothothot = 8;
+
+    }
+    else{
+      this.hothothot = 4;
+    }
+  }
+
+  rekisteroiChart(chart){
+    this.chartviite = chart;
+  }
+
+  paivitaChart(chart){
+    if(chart){
+      this.viikkoarvot[4] = (this.aukisekuntti - new Date(2018, 1,1).valueOf())/1000;
+      // console.log(chart);
+      chart.data.datasets[0].data = this.viikkoarvot;
+      chart.update();
+    }
+  }
+
+
+
+  presentToast=()=> {
+    setTimeout(()=>{
+      if(this.hothothot > 6 && this.toastesilla == false){
+        this.toastesilla = true
+        let toast = this.toastCtrl.create({
+          showCloseButton: true,
+          message: 'Jääkaapin suosituslämpötila on +2 - +6 astetta. Säädä jääkaappisi lämpötilaa',
+          position: 'bottom',
+          closeButtonText: 'ok'
+        });
+
+        toast.onDidDismiss(() => {
+          this.toastesilla = false
+          console.log('Dismissed toast');
+        });
+
+        toast.present();
+      }
+    },1500)
+  }
+
+  apina=()=>{
+    console.log(this.lampotila);
+    switch(Math.floor(this.lampotila)) {
+      case 4:
+      this.lampotila += 1 / 20;
+      break;
+      case 5:
+      this.lampotila += 1 / 53;
+      break;
+      case 6:
+      this.lampotila += 1 / 61;
+      break;
+      case 7:
+      this.lampotila += 1 / 69;
+      break;
+      case 8:
+      this.lampotila += 1 / 80;
+      break;
+      case 9:
+      this.lampotila += 1 / 93;
+      break;
+      case 10:
+      this.lampotila += 1 / 112;
+      break;
+      case 11:
+      this.lampotila += 1 / 140;
+      break;
+      case 12:
+      this.lampotila += 1 / 250;
+      break;
+    }
+  }
+
+  apina2=()=>{
+    console.log(this.lampotila);
+    switch(Math.floor(this.lampotila)) {
+      case 5:
+      this.lampotila -= 1 / 53;
+      break;
+      case 6:
+      this.lampotila -= 1 / 261;
+      break;
+      case 7:
+      this.lampotila -= 1 / 190;
+      break;
+      case 8:
+      this.lampotila -= 1 / 160;
+      break;
+      case 9:
+      this.lampotila -= 1 / 100;
+      break;
+      case 10:
+      this.lampotila -= 1 / 60;
+      break;
+      case 11:
+      this.lampotila -= 1 / 35;
+      break;
+      case 12:
+      this.lampotila -= 1 / 20;
+      break;
+    }
+  }
 }
